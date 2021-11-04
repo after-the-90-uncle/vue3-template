@@ -1,26 +1,27 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <router-view />
 </template>
-
-<script>
-import HelloWorld from './components/HelloWorld.vue'
-
+<script >
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
+    async mounted(){
+        await this.login();
+        this.$store.dispatch("login")
+
+    },
+    methods:{
+        login(){
+            return new Promise((resolve) => {
+                let timer = setTimeout(() => {
+                    clearTimeout(timer)
+                    resolve(true)
+                },2000)
+            })
+        }
+    }
 }
 </script>
+<style src="./styles/base.scss" lang="scss"></style>
+<style src="./styles/toast.scss" lang="scss"></style>
+<style src="./styles/dialog.scss" lang="scss"></style>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+
